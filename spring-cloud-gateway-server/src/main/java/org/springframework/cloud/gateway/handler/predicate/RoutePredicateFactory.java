@@ -30,6 +30,10 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.t
 /**
  * @author Spencer Gibb
  */
+
+/**
+ * 路由断言工厂
+ */
 @FunctionalInterface
 public interface RoutePredicateFactory<C> extends ShortcutConfigurable, Configurable<C> {
 
@@ -70,7 +74,7 @@ public interface RoutePredicateFactory<C> extends ShortcutConfigurable, Configur
 	default AsyncPredicate<ServerWebExchange> applyAsync(C config) {
 		return toAsyncPredicate(apply(config));
 	}
-
+	// 默认工厂名是去掉RoutePredicateFactory的后缀
 	default String name() {
 		return NameUtils.normalizeRoutePredicateName(getClass());
 	}

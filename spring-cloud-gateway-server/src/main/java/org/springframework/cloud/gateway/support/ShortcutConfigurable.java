@@ -47,6 +47,10 @@ import org.springframework.util.Assert;
 /**
  * @author Spencer Gibb
  */
+
+/**
+ * 简写配置
+ */
 public interface ShortcutConfigurable {
 
 	static String normalizeKey(String key, int entryIdx, ShortcutConfigurable argHints, Map<String, String> args) {
@@ -92,7 +96,7 @@ public interface ShortcutConfigurable {
 	default String shortcutFieldPrefix() {
 		return "";
 	}
-
+	// 简写类型
 	enum ShortcutType {
 
 		/**
@@ -136,6 +140,9 @@ public interface ShortcutConfigurable {
 
 		/**
 		 * List is all elements except last which is a boolean flag.
+		 */
+		/**
+		 * 最后一个元素是布尔值
 		 */
 		GATHER_LIST_TAIL_FLAG {
 			@Override

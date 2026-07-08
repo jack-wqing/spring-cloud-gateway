@@ -16,6 +16,9 @@
 
 package org.springframework.cloud.gateway.support;
 
+/**
+ * 为路由断言提供配置对象
+ */
 public interface HasConfig {
 
 	default Object getConfig() {

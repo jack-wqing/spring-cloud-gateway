@@ -22,6 +22,10 @@ package org.springframework.cloud.gateway.support;
  * @author Spencer Gibb
  * @since 3.1.0
  */
+
+/**
+ * 简单的访问者对象
+ */
 @FunctionalInterface
 public interface Visitor {
 

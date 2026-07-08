@@ -23,18 +23,22 @@ import org.springframework.cloud.gateway.support.Visitor;
 import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
+/**
+ * 网关断言: 断言工厂都返回该函数接口
+ */
 public interface GatewayPredicate extends Predicate<ServerWebExchange>, HasConfig {
 
+	// and
 	@Override
 	default Predicate<ServerWebExchange> and(Predicate<? super ServerWebExchange> other) {
 		return new AndGatewayPredicate(this, wrapIfNeeded(other));
 	}
-
+	// Negate
 	@Override
 	default Predicate<ServerWebExchange> negate() {
 		return new NegateGatewayPredicate(this);
 	}
-
+	// or
 	@Override
 	default Predicate<ServerWebExchange> or(Predicate<? super ServerWebExchange> other) {
 		return new OrGatewayPredicate(this, wrapIfNeeded(other));
@@ -56,6 +60,9 @@ public interface GatewayPredicate extends Predicate<ServerWebExchange>, HasConfi
 		return right;
 	}
 
+	/**
+	 * 包装普通的Predicate -> GatewayPredicate
+	 */
 	class GatewayPredicateWrapper implements GatewayPredicate {
 
 		private final Predicate<? super ServerWebExchange> delegate;
